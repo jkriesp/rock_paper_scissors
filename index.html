@@ -17,6 +17,7 @@
         }
 
         function getRandomInt(max) {
+            // helper method to get random integer
             return Math.floor(Math.random() * Math.floor(max));
         }
 
@@ -24,7 +25,7 @@
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
             if (!(playerSelection == computerSelection)) {
-                
+                // Check only for wins, else return false.
                 if (playerSelection === "rock" && computerSelection === "scissor") {
                     return true;
                 } else if (playerSelection === "scissor" && computerSelection === "paper") {
@@ -39,6 +40,7 @@
         }
 
         function game() {
+            // initialize round and score
             round = 0;
             player_score = 0;
             computer_score = 0;
@@ -67,7 +69,6 @@
             }
         }
         game()
-
 
     </script>
 </body>
