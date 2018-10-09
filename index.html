@@ -17,11 +17,12 @@
         }
 
         function getRandomInt(max) {
-            // helper method to get random integer
+            // Helper method to get random integer
             return Math.floor(Math.random() * Math.floor(max));
         }
 
         function playRound(playerSelection, computerSelection) {
+            // Make case insensitive.
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
             if (!(playerSelection == computerSelection)) {
@@ -40,7 +41,7 @@
         }
 
         function game() {
-            // initialize round and score
+            // Initialize round and score
             round = 0;
             player_score = 0;
             computer_score = 0;
