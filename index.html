@@ -27,7 +27,7 @@
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
             if (!(playerSelection == computerSelection)) {
-                // Check only for wins, else return false.
+                // Check only for player wins, else return false.
                 if (playerSelection === "rock" && computerSelection === "scissor") {
                     return true;
                 } else if (playerSelection === "scissor" && computerSelection === "paper") {
@@ -38,7 +38,7 @@
                     return false;
                 }
             }
-            return console.log("Tie! " + playerSelection + " vs. " + computerSelection)
+            
         }
 
         function game() {
@@ -47,17 +47,18 @@
             player_score = 0;
             computer_score = 0;
             while (round < 5) {
+                // Get hand values
                 const playerSelection = window.prompt("Rock, paper, scissor?")
                 const computerSelection = computerPlay()
 
                 if (playRound(playerSelection, computerSelection)) {
                     player_score++;
                     console.log("Player wins round! " + playerSelection + " beats " + computerSelection)
-                }
-
-                if (!playRound(playerSelection, computerSelection) && !(playerSelection == computerSelection)) {
+                } else if (!playRound(playerSelection, computerSelection) && !(playerSelection == computerSelection)) {
                     computer_score++;
                     console.log("Computer wins round! " + computerSelection + " beats " + playerSelection)
+                } else {
+                    console.log("Tie! " + playerSelection + " vs. " + computerSelection)
                 }
 
                 if (round == 4) {
