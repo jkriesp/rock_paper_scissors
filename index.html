@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RPS-Game</title>
+</head>
+<body>
+    
+    <script>
+        function computerPlay () {
+            let c_hand = ["rock", "paper", "scissor"];
+            return c_hand[getRandomInt(3)];
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if(playerSelection == computerSelection) {
+                return "Tie! " + playerSelection + " vs. " + computerSelection;
+            } else if (playerSelection === "rock" && computerSelection ==="scissor") {
+                return "Player wins! Rock beats scissor";
+            } else if (playerSelection === "scissor" && computerSelection === "paper") {
+                return "Player wins! Rock beats scissor";
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                return "Player wins! Paper beats rock";
+            } else {
+                return "Computer wins! " + computerSelection + " beats " + playerSelection;
+            }
+        }
+
+        const playerSelection = "rock";
+        const computerSelection = computerPlay()
+        console.log(playRound(playerSelection, computerSelection));
+    </script>
+</body>
+</html>
