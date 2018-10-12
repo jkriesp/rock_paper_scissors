@@ -9,8 +9,47 @@
 </head>
 
 <body>
-
+    <div class="gameContainer">
+        <button id="rock">Rock</button>
+        <button id="scissor">Scissor</button>
+        <button id="paper">Paper</button>
+    </div>
     <script>
+        const gContainer = document.querySelector('.gameContainer');
+        const buttons = document.querySelectorAll("button");
+
+        // use the .forEach method to iterate through each button
+        buttons.forEach((button) => {
+            // and for each button we add a "click" listener
+            button.addEventListener('click', (e) => {
+                let computerHand = computerPlay();
+                game(button.id, computerHand);
+                displayRoundResult(button.id, computerHand);
+            });
+        });
+
+
+        function displayRoundResult() {
+            const roundResult = document.createElement('p');
+            roundResult.setAttribute("id", "round_result");
+
+            if (document.getElementById("round_result")) {
+                gContainer.removeChild(document.getElementById("round_result"));
+            }
+
+
+            if (playRound(arguments[0], arguments[1]) === "tie") {
+                roundResult.textContent = "It's a tie my dudes."
+            } else if (playRound(arguments[0], arguments[1])) {
+                roundResult.textContent = "Player Wins!";
+            } else if (!playRound(arguments[0], arguments[1])) {
+                roundResult.textContent = "Computer Wins!";
+            }
+            gContainer.appendChild(roundResult);
+        }
+
+
+        // Assign random hand to computer.
         function computerPlay() {
             let c_hand = ["rock", "paper", "scissor"];
             return c_hand[getRandomInt(3)];
@@ -25,6 +64,9 @@
             // Make case insensitive.
             playerSelection = playerSelection.toLowerCase();
             computerSelection = computerSelection.toLowerCase();
+            if (playerSelection == computerSelection) {
+                return "tie";
+            }
             if (!(playerSelection == computerSelection)) {
                 // Check only for player wins, else return false.
                 if (playerSelection === "rock" && computerSelection === "scissor") {
@@ -37,40 +79,44 @@
                     return false;
                 }
             }
-            
+
         }
+        let round = 0;
+        let player_score = 0;
+        let computer_score = 0;
 
         function game() {
-            // Initialize round and score
-            round = 0;
-            player_score = 0;
-            computer_score = 0;
-            while (round < 5) {
-                // Get hand values
-                const playerSelection = window.prompt("Rock, paper, scissor?")
-                const computerSelection = computerPlay()
+            // Get hand values
+            const playerSelection = arguments[0];
+            const computerSelection = arguments[1];
 
-                if (playRound(playerSelection, computerSelection)) {
-                    player_score++;
-                    console.log("Player wins round! " + playerSelection + " beats " + computerSelection)
-                } else if (!playRound(playerSelection, computerSelection) && !(playerSelection == computerSelection)) {
-                    computer_score++;
-                    console.log("Computer wins round! " + computerSelection + " beats " + playerSelection)
-                } else {
-                    console.log("Tie! " + playerSelection + " vs. " + computerSelection)
-                }
-
-                if (round == 4) {
-                    if (player_score > computer_score) {
-                        console.log("Player wins! " + player_score + " against " + computer_score)
-                    } else {
-                        console.log("Computer wins! " + computer_score + " against " + player_score)
-                    }
-                }
-                round++;
+            if (playRound(arguments[0], arguments[1]) === "tie") {
+                console.log("Tie! " + playerSelection + " vs. " + computerSelection)
             }
+            else if (playRound(playerSelection, computerSelection)) {
+                player_score++;
+                console.log("Player wins round! " + playerSelection + " beats " + computerSelection)
+            } else if (!playRound(playerSelection, computerSelection) && !(playerSelection == computerSelection)) {
+                computer_score++;
+                console.log("Computer wins round! " + computerSelection + " beats " + playerSelection)
+            }
+
+            if (round == 4) {
+                if (player_score > computer_score) {
+                    console.log("Player wins! " + player_score + " against " + computer_score)
+
+                } else {
+                    console.log("Computer wins! " + computer_score + " against " + player_score)
+
+                }
+                // Reset round after 5 rounds.
+                round = 0;
+                player_score = 0;
+                computer_score = 0;
+            }
+            round++;
         }
-        game()
+
 
     </script>
 </body>
