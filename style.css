@@ -1,0 +1,25 @@
+body {
+    background: blanchedalmond;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.gameContainer {
+    margin: auto;
+    width: 50%;
+    background: rgb(52, 114, 172);
+    height: 123px;
+    width: 355.500px;
+
+}
+
+.gameContainer p {
+    text-align: center;
+}
+
+.gameContainer button {
+    border: 0px;
+    height: 20px;
+    width: 30%;
+    
+    
+}
