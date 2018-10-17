@@ -11,9 +11,17 @@
 
 <body>
     <div class="gameContainer">
-        <button id="rock">Rock</button>
-        <button id="scissor">Scissor</button>
-        <button id="paper">Paper</button>
+        <div class="buttonContainer">
+            <button id="rock" class="btn-1"><span>Rock</span></button>
+            <button id="paper" class="btn-1"><span>Paper</span></button>
+            <button id="scissor" class="btn-1"><span>Scissor</span></button>
+        </div>
+        <!-- Last minute design element implementation-->
+        <p id="round_result">&ensp; </p>
+        <p id="score">&ensp;</p>
+        <p id="round_number">&ensp;</p>
+    
+
     </div>
     <script>
         const gContainer = document.querySelector('.gameContainer');
@@ -25,10 +33,9 @@
             button.addEventListener('click', (e) => {
                 let computerHand = computerPlay();
                 game(button.id, computerHand);
-                
+
             });
         });
-
 
         function displayRoundResult() {
             const roundResult = document.createElement('p');
@@ -38,6 +45,7 @@
             round_number.setAttribute("id", "round_number");
             score.setAttribute("id", "score");
             roundResult.setAttribute("id", "round_result");
+            
 
             if (document.getElementById("round_result")) {
                 gContainer.removeChild(document.getElementById("round_result"));
@@ -132,7 +140,7 @@
                     console.log("Computer wins! " + computer_score + " against " + player_score)
                     resetScore();
                 }
-            }          
+            }
         }
 
         function resetScore() {
