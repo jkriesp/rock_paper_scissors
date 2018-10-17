@@ -36,6 +36,10 @@ button{
     margin: 20px 30px;
     background: rgba(0,0,0,0.09);
   }
+  button:focus {
+      outline-color: transparent;
+      outline-style: none;
+  }
   span{
     display: block;
     padding: 25px 80px;
